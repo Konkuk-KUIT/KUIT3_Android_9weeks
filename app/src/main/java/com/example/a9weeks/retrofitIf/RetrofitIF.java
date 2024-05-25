@@ -12,4 +12,6 @@ public interface RetrofitIF {
    @GET("/week/post")
    Call<BaseData<PostResult>> getPosts();
 
+   @
+
 }
