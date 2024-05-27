@@ -11,12 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.a9weeks.dataClass.BaseData
 import com.example.a9weeks.dataClass.LoginRequestData
 import com.example.a9weeks.dataClass.LoginResponseData
-import com.example.a9weeks.dataClass.SignupRequestData
-import com.example.a9weeks.dataClass.SignupResponseData
 
 import com.example.a9weeks.databinding.ActivityLoginBinding
 import com.example.a9weeks.retrofitIf.RetrofitIF
-import parseErrorMessage
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,13 +32,14 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnSignup.setOnClickListener {
             intent = Intent(this, SignupActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
 
         binding.btnLogin.setOnClickListener{
             val userId = binding.etId.text.toString()
             val password = binding.etPassword.text.toString()
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
 
             service.login(LoginRequestData(userId, password))
                 .enqueue(object : Callback<BaseData<LoginResponseData>> {
@@ -63,12 +61,9 @@ class LoginActivity : AppCompatActivity() {
                                 editor.putString("accessToken", accessToken)
                                 editor.apply()
 
-                                // HomeFragment 띄우기
-                                val homeFragment = Home()
-                                supportFragmentManager.beginTransaction()
-                                    .replace(R.id.main_frm, homeFragment)
-                                    .addToBackStack(null)
-                                    .commit()
+                                // Home 띄우기
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                startActivity(intent)
                             }
 
                         }

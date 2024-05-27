@@ -13,7 +13,6 @@ import com.example.a9weeks.dataClass.SignupResponseData
 
 import com.example.a9weeks.databinding.ActivitySignupBinding
 import com.example.a9weeks.retrofitIf.RetrofitIF
-import parseErrorMessage
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,7 +43,7 @@ class SignupActivity : AppCompatActivity() {
                         response: Response<BaseData<SignupResponseData>>
                     ) {
                         if(response.isSuccessful){
-                            Log.d("상태", response.body().toString())
+                            Log.d("성공", response.body().toString())
 
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             startActivity(intent)

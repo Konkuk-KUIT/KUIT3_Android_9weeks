@@ -16,6 +16,17 @@ data class BaseData<T> (
     val result : T
 )
 
+data class ErrorResponse(
+    @SerializedName("code")
+    val code : Int,
+    @SerializedName("status")
+    val status : Int,
+    @SerializedName("message")
+    val message : String,
+    @SerializedName("timestamp")
+    val timestamp : String
+)
+
 data class PostResult(
     @SerializedName("userProfileImage")
     val userProfileImage : String,
@@ -29,24 +40,13 @@ data class PostResult(
     val contents : String
 )
 
-data class ErrorResponse(
-    @SerializedName("code")
-    val code : Int,
-    @SerializedName("status")
-    val status : Int,
-    @SerializedName("message")
-    val message : String,
-    @SerializedName("timestamp")
-    val timestamp : String
-)
-
 data class SignupRequestData(
-    @SerializedName("userID")
+    @SerializedName("userId")
     val userId : String,
     @SerializedName("password")
     val password : String,
     @SerializedName("nickName")
-    val nickName : String
+    val nickName : String,
 )
 
 data class SignupResponseData(
@@ -55,10 +55,10 @@ data class SignupResponseData(
 )
 
 data class LoginRequestData(
-    @SerializedName("userID")
+    @SerializedName("userId")
     val userId : String,
     @SerializedName("password")
-    val password : String,
+    val password : String
 )
 
 data class LoginResponseData(
@@ -66,10 +66,10 @@ data class LoginResponseData(
     val accessToken : String
 )
 
+
 data class GetProfileResponseData(
     @SerializedName("nickName")
     val nickName : String
 )
-
 
 

@@ -20,7 +20,7 @@ interface RetrofitIF {
     @POST("/week/sign")
     fun signup(
         @Body
-        signupRequestData: SignupRequestData
+        signupRequestData : SignupRequestData
     ) : Call<BaseData<SignupResponseData>>
 
     @POST("/week/login")
@@ -34,5 +34,4 @@ interface RetrofitIF {
         @Header("Authorization")
         accessToken : String
     ) : Call<BaseData<GetProfileResponseData>>
-
 }
