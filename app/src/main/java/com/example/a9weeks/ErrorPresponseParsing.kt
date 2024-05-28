@@ -1,8 +1,5 @@
 package com.example.a9weeks
 
-import android.util.Log
-import com.example.a9weeks.dataClass.ErrorResponse
-import com.google.gson.Gson
 import org.json.JSONObject
 
 
