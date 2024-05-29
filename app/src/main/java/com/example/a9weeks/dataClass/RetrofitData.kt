@@ -15,8 +15,6 @@ data class BaseData<T> (
     @SerializedName("result")
     val result : T
 )
-
-
 data class PostResult(
     @SerializedName("userProfileImage")
     val userProfileImage : String,
@@ -28,6 +26,49 @@ data class PostResult(
     val like : Int,
     @SerializedName("contents")
     val contents : String
+)
+
+data class ErrorResponse(
+    @SerializedName("code")
+    val code:Int,
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("message")
+    val message:String,
+    @SerializedName("timestamp")
+    val timestamp:String
+)
+
+data class SignUpRequestData(
+    @SerializedName("userId")
+    val userId:String,
+    @SerializedName("password")
+    val password:String,
+    @SerializedName("nickName")
+    val nickName:String
+)
+
+data class SignUpResponseData(
+    @SerializedName("state")
+    val state:String
+)
+
+data class LogInRequestData(
+    @SerializedName("userId")
+    val userId: String,
+    @SerializedName("password")
+    val password:String
+
+)
+
+data class LogInResponseData(
+    @SerializedName("accessToken")
+    val accessToken:String
+)
+
+data class NickNameResponseData(
+    @SerializedName("nickName")
+    val nickName:String
 )
 
 
