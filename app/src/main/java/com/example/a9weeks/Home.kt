@@ -25,6 +25,38 @@ class Home : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
+
+        val retrofit = RetrofitService.retrofit
+
+        val service = retrofit.create(RetrofitIF::class.java)
+
+        service.getPosts().enqueue(object : Callback<BaseData<PostResult>> {
+            override fun onResponse(call: Call<BaseData<PostResult>>, response: Response<BaseData<PostResult>>) {
+                if(response.isSuccessful){
+                    val response = response.body()
+                    //받아온 파일 적용하기
+                    if (response != null) {
+                        Glide.with(requireContext())
+                            .load(response.result.postImage)
+                            .into(binding.ivHomePostingImage)
+                    }
+
+                    if (response != null) {
+                        Log.d("성공", response.result.postImage)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<BaseData<PostResult>>, t: Throwable) {
+                Log.d("실패", t.message.toString())
+            }
+
+        })
+
+
+
+
+
         return binding.root
     }
 
